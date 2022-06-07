@@ -15,7 +15,7 @@ void ShakerSort(int arr[], int n, int &comparision, double &time)
 {
     int up = 0,
         down = n - 1,
-        hv = 0;
+        hv = 0; //store the last position of each swap.
     
     clock_t start, end;
     comparision = 0;
