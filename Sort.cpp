@@ -49,6 +49,10 @@ void ShakerSort(int arr[], int n, int &comparision, double &time)
     time = (double)(end - start)/CLOCKS_PER_SEC;
 }
 
+void ShellSort(int a[], int n, int gap[], int gap_num){
+    
+}
+
 void QUICKSORT(int a[], int l, int r, int &comparision)
 {
     if (++comparision && l >= r)
