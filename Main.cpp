@@ -9,9 +9,9 @@ int main()
     int n = 1000000;
     int *a = new int [n];
     GenerateData(a,n,0);
-    int QuickSort_comparision = 0;
-    double QuickSort_time = 0;
-    QuickSort(a,n,QuickSort_comparision,QuickSort_time);
-    cout << QuickSort_comparision << " " << QuickSort_time;
+    int comparision = 0;
+    double time = 0;
+    CountingSort(a,n,comparision,time);
+    cout << comparision << " " << time;
     return 0;
 }
