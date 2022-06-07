@@ -1,40 +1,29 @@
-#include <time.h>
+#include "Sort.h"
 
-void swap(int &num1, int &num2)
+void SharkerSort(int *&arr, int n)
 {
-    int temp = num1;
-    num1 = num2;
-    num2 = temp;
-}
-
-void QUICKSORT(int a[],int l,int r,int &comparison)
-{
-    if (++comparison && l >= r) return;
-    int i = l, j = r, m = a[(i + j) / 2];
-    while (++comparison && i < j)
+    int up = 0,
+        down = n - 1,
+        hv = 0;
+    while (up < down)
     {
-        while (++comparison && a[i] < m) i++;
-        while (++comparison && a[j] > m) j--;
-        if (++comparison && i <= j)
+        for (int i = up; i < down; i++)
         {
-            swap(a[i],a[j]);
-            i++;
-            j--;
+            if (arr[i] > arr[i + 1])
+            {
+                swap(arr[i], arr[i + 1]);
+                hv = i;
+            }
         }
+        down = hv;
+        for (int j = down; j > up; j--)
+        {
+            if (arr[j - 1] > arr[j])
+            {
+                swap(arr[j - 1], arr[j]);
+                hv = j;
+            }
+        }
+        up = hv;
     }
-    QUICKSORT(a,l,j,comparison);
-    QUICKSORT(a,i,r,comparison);
-}
-
-void QuickSort(int a[],int n,int &comparison,double &time)
-{
-    clock_t start, end;
-    comparison = 0;
-    time = 0;
-
-    start = clock();
-    QUICKSORT(a,0,n,comparison);
-    end = clock();
-
-    time = (double) (end - start) / CLOCKS_PER_SEC;
 }
