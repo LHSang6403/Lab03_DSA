@@ -16,7 +16,7 @@ void SharkerSort(int *&arr, int n)
             }
         }
         down = hv;
-        for (int j = down; j > up; j++)
+        for (int j = down; j > up; j--)
         {
             if (arr[j - 1] > arr[j])
             {
