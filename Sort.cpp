@@ -11,11 +11,17 @@ void swap(int &num1, int &num2)
     num2 = temp;
 }
 
-void SHAKERSORT(int arr[], int n, int &comparision)
+void ShakerSort(int arr[], int n, int &comparision, double &time)
 {
     int up = 0,
         down = n - 1,
         hv = 0;
+    
+    clock_t start, end;
+    comparision = 0;
+    time = 0;
+
+    start = clock();
     while (++comparision && up < down)
     {
         for (int i = up; i < down; i++)
@@ -39,17 +45,7 @@ void SHAKERSORT(int arr[], int n, int &comparision)
         }
         up = hv;
     }
-}
-void ShakerSort(int arr[], int n, int &comparision, double &time)
-{
-    clock_t start, end;
-    comparision = 0;
-    time = 0;
-
-    start = clock();
-    SHAKERSORT(arr, n, comparision);
     end = clock();
-
     time = (double)(end - start)/CLOCKS_PER_SEC;
 }
 
