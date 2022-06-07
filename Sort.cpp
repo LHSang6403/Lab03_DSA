@@ -27,4 +27,4 @@ void SharkerSort(int *&arr, int n)
         up = hv;
     }
 }
-//kho xai qua
+//kho
