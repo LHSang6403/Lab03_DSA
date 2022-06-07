@@ -83,3 +83,30 @@ void QuickSort(int a[], int n, int &comparision, double &time)
 
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
+
+void CountingSort(int a[],int n,int &comparision,double &time)
+{
+    clock_t start, end;
+    comparision = 0;
+
+    // According to randomize code, the elements' range is from 1 to n-1 
+    int *flag = new int [n]{0};
+    int *res = new int [n];
+
+    start = clock();
+    for (int i = 0; ++comparision, i < n; i++) flag[a[i]]++;
+    for (int i = 1; ++comparision, i < n; i++) flag[i] += flag[i-1];
+    for (int i = 0; ++comparision, i < n; i++) 
+    {
+        res[flag[a[i]] - 1] = a[i];
+        flag[a[i]]--;
+    }
+    end = clock();
+
+    for (int i = 0; i < n; i++) a[i] = res[i];
+    delete flag;
+    delete res;
+
+    time = (double) (end - start) / CLOCKS_PER_SEC;
+    // Ref: https://www.geeksforgeeks.org/counting-sort/
+}
