@@ -1,0 +1,1 @@
+void QuickSort(int a[],int n,int &comparison,double &time);
