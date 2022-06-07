@@ -1,4 +1,8 @@
 #include <time.h>
+#include <math.h>
+#include <iostream>
+
+using namespace std;
 
 void swap(int &num1, int &num2)
 {
@@ -84,7 +88,7 @@ void QuickSort(int a[], int n, int &comparision, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void CountingSort(int a[],int n,int &comparision,double &time)
+void CountingSort(int *&a, int n, int &comparision, double &time)
 {
     clock_t start, end;
     comparision = 0;
@@ -101,12 +105,42 @@ void CountingSort(int a[],int n,int &comparision,double &time)
         res[flag[a[i]] - 1] = a[i];
         flag[a[i]]--;
     }
-    end = clock();
 
-    for (int i = 0; i < n; i++) a[i] = res[i];
+    int *temp = a;
+    a = res;
+    delete temp;
     delete flag;
-    delete res;
 
+    end = clock();
     time = (double) (end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/counting-sort/
+}
+
+void RadixSort(int *&a, int n, int &comparision, double &time)
+{
+    clock_t start, end;
+    comparision = 0;
+
+    start = clock();
+    for (int i = 1; ++comparision, i <= pow(10,(int)log10(n) + 1); i *= 10)
+    {
+        int *res = new int [n]{0};
+        int flag[10]={0};
+
+        for (int j = 0; ++comparision, j < n; j++) flag[(a[j] / i) % 10]++;
+        for (int j = 1; ++comparision, j < 10; j++) flag[j] += flag[j-1];
+        for (int j = n - 1; ++comparision, j >= 0; j--) 
+        {
+            res[flag[(a[j] / i) % 10] - 1] = a[j];
+            flag[(a[j] / i) % 10]--;
+        }
+
+        int *temp = a;
+        a = res;
+        delete temp;
+    }
+    end = clock();
+
+    time = (double) (end - start) / CLOCKS_PER_SEC;
+    // Ref: https://www.geeksforgeeks.org/radix-sort/
 }

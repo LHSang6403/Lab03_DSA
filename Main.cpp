@@ -6,12 +6,16 @@ using namespace std;
 
 int main()
 {
-    int n = 1000000;
+    int n = 20;
     int *a = new int [n];
     GenerateData(a,n,0);
     int comparision = 0;
     double time = 0;
-    CountingSort(a,n,comparision,time);
-    cout << comparision << " " << time;
+
+    
+    RadixSort(a,n,comparision,time);
+    for (int i = 0; i < n; i++) cout << a[i] << " ";
+    cout << endl << comparision << " " << time;
+
     return 0;
 }
