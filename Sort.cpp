@@ -36,7 +36,7 @@ void SHAKERSORT(int arr[], int n, int &comparision)
         up = hv;
     }
 }
-void shakerSort(int arr[], int n, int &comparision, double &time)
+void ShakerSort(int arr[], int n, int &comparision, double &time)
 {
     clock_t start, end;
     comparision = 0;
