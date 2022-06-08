@@ -1,15 +1,9 @@
 #include <time.h>
 #include <math.h>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
-
-void swap(int &num1, int &num2)
-{
-    int temp = num1;
-    num1 = num2;
-    num2 = temp;
-}
 
 void ShakerSort(int arr[], int n, int &comparision, double &time)
 {
@@ -99,16 +93,21 @@ void ShellSort(int a[], int n, int &comparision, double &time)
 
 void QUICKSORT(int a[], int l, int r, int &comparision)
 {
-    if (++comparision && l >= r) return;
-    int i = l, j = r, m = a[(i + j) / 2];
-    while (++comparision && i < j)
+    int i = l - 1, j = r + 1, m = a[(i + j) / 2];
+    do
     {
-        while (++comparision && a[i] < m) i++;
-        while (++comparision && a[j] > m) j--;
-        if (++comparision && i <= j) swap(a[i++], a[j--]);
+        do i++; while (++comparision && a[i] < m);
+        do j--; while (++comparision && a[j] > m);
+        swap(a[i], a[j]);
+    } while (++comparision && i < j);
+    swap(a[i],a[j]);
+    if (++comparision && i == j)
+    {
+        i++;
+        j--;
     }
-    QUICKSORT(a, l, j, comparision);
-    QUICKSORT(a, i, r, comparision);
+    if (++comparision && l < j) QUICKSORT(a, l, j, comparision);
+    if (++comparision && i < r) QUICKSORT(a, i, r, comparision);
 }
 
 void QuickSort(int a[], int n, int &comparision, double &time)
@@ -118,7 +117,7 @@ void QuickSort(int a[], int n, int &comparision, double &time)
     time = 0;
 
     start = clock();
-    QUICKSORT(a, 0, n, comparision);
+    QUICKSORT(a, 0, n - 1, comparision);
     end = clock();
 
     time = (double)(end - start) / CLOCKS_PER_SEC;
