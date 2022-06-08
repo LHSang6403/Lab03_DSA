@@ -55,12 +55,12 @@ void createGap(int n, int gap[], int &gap_num, int &comparision)
 }
 
 void ShellSort(int a[], int n, int &comparision, double &time)
-{   
+{
     clock_t start, end;
     comparision = 0, time = 0;
 
     int *gap = new int[n],
-         gap_num = 0;
+        gap_num = 0;
     start = clock();
     createGap(n, gap, gap_num, comparision);
 
@@ -88,7 +88,7 @@ void ShellSort(int a[], int n, int &comparision, double &time)
     delete[] gap;
 
     end = clock();
-    time = (double) (end - start)/CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void QUICKSORT(int a[], int l, int r, int &comparision)
@@ -96,18 +96,24 @@ void QUICKSORT(int a[], int l, int r, int &comparision)
     int i = l - 1, j = r + 1, m = a[(i + j) / 2];
     do
     {
-        do i++; while (++comparision && a[i] < m);
-        do j--; while (++comparision && a[j] > m);
+        do
+            i++;
+        while (++comparision && a[i] < m);
+        do
+            j--;
+        while (++comparision && a[j] > m);
         swap(a[i], a[j]);
     } while (++comparision && i < j);
-    swap(a[i],a[j]);
+    swap(a[i], a[j]);
     if (++comparision && i == j)
     {
         i++;
         j--;
     }
-    if (++comparision && l < j) QUICKSORT(a, l, j, comparision);
-    if (++comparision && i < r) QUICKSORT(a, i, r, comparision);
+    if (++comparision && l < j)
+        QUICKSORT(a, l, j, comparision);
+    if (++comparision && i < r)
+        QUICKSORT(a, i, r, comparision);
 }
 
 void QuickSort(int a[], int n, int &comparision, double &time)
@@ -180,4 +186,8 @@ void RadixSort(int *&a, int n, int &comparision, double &time)
 
     time = (double)(end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/radix-sort/
+}
+void FlashSort(int a[], int n, int &comparision, double &time)
+{
+    
 }
