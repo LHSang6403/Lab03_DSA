@@ -99,15 +99,12 @@ void ShellSort(int a[], int n, int &comparision, double &time)
 
 void QUICKSORT(int a[], int l, int r, int &comparision)
 {
-    if (++comparision && l >= r)
-        return;
+    if (++comparision && l >= r) return;
     int i = l, j = r, m = a[(i + j) / 2];
     while (++comparision && i < j)
     {
-        while (++comparision && a[i] < m)
-            i++;
-        while (++comparision && a[j] > m)
-            j--;
+        while (++comparision && a[i] < m) i++;
+        while (++comparision && a[j] > m) j--;
         if (++comparision && i <= j) swap(a[i++], a[j--]);
     }
     QUICKSORT(a, l, j, comparision);
