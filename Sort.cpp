@@ -49,7 +49,7 @@ void ShakerSort(int arr[], int n, int &comparision, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-int createGap(int n, int gap[], int &gap_num, int &comparision)
+void createGap(int n, int gap[], int &gap_num, int &comparision)
 {
     gap[0] = 1;
     for (int i = 1; gap[i - 1] < n; i++)
