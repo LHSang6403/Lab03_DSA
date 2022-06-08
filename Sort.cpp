@@ -152,9 +152,8 @@ void CountingSort(int *&a, int n, int &comparision, double &time)
         flag[a[i]]--;
     }
 
-    int *temp = a;
+    delete a;
     a = res;
-    delete temp;
     delete flag;
 
     end = clock();
@@ -183,9 +182,8 @@ void RadixSort(int *&a, int n, int &comparision, double &time)
             flag[(a[j] / i) % 10]--;
         }
 
-        int *temp = a;
+        delete a;
         a = res;
-        delete temp;
     }
     end = clock();
 
