@@ -108,12 +108,7 @@ void QUICKSORT(int a[], int l, int r, int &comparision)
             i++;
         while (++comparision && a[j] > m)
             j--;
-        if (++comparision && i <= j)
-        {
-            swap(a[i], a[j]);
-            i++;
-            j--;
-        }
+        if (++comparision && i <= j) swap(a[i++], a[j--]);
     }
     QUICKSORT(a, l, j, comparision);
     QUICKSORT(a, i, r, comparision);

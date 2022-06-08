@@ -13,7 +13,7 @@ int main()
     double time = 0;
 
     
-    ShakerSort(a,n,comparision,time);
+    QuickSort(a,n,comparision,time);
     for (int i = 0; i < n; i++) cout << a[i] << " ";
     cout << endl << comparision << " " << time;
 
