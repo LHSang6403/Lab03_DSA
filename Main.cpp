@@ -16,8 +16,8 @@ int main()
     strcpy(argv[0],"Main");
     strcpy(argv[1],"-a");
     strcpy(argv[2],"quick-sort");
-    strcpy(argv[3],"input.txt");
-    strcpy(argv[4],"-time");
+    strcpy(argv[3],"10");
+    strcpy(argv[4],"-both");
     //strcpy(argv[5],"-time");
 
     processArg(argc,argv);

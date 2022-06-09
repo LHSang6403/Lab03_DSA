@@ -81,6 +81,7 @@ ModeA inputAlgorithmMode(int argc, char **argv)
 
 void printResult(string algorithm, string filename, int inOrder, int size, string outParameter, int comparison, double time)
 {
+    cout << "==================================" << endl;
     cout << "Algorithm: " << algorithm << endl;
     if (filename != "") cout << "Input File: " << filename << endl;
     cout << "Input Size: " << size << endl;
@@ -105,7 +106,16 @@ void printResult(string algorithm, string filename, int inOrder, int size, strin
     if (outParameter == "-both" || outParameter == "-time") cout << time << endl; else cout << "Not Required" << endl;
     cout << "Comparisons: ";
     if (outParameter == "-both" || outParameter == "-comp") cout << comparison << endl; else cout << "Not Required" << endl;
+    cout << "==================================" << endl << endl;
+}
 
+string convertNuminFilename(int num)
+{
+    if (num == 0) return "1";
+    if (num == 1) return "3";
+    if (num == 2) return "4";
+    if (num == 3) return "2";
+    return "";
 }
 
 void processAlgorithmMode(int argc, char **argv)
@@ -128,9 +138,9 @@ void processAlgorithmMode(int argc, char **argv)
         printResult(arg.algorithm,arg.givenInput,getInputOrder(arg.inOrder),arg.inputSize,arg.outParameter,comparison,time);
     } else 
     {
+        a = new int [arg.inputSize];
         if (arg.inOrder != "") 
         {
-            a= new int [arg.inputSize];
             GenerateData(a,arg.inputSize,getInputOrder(arg.inOrder)); 
             ofstream fo("input.txt");
             
@@ -143,7 +153,19 @@ void processAlgorithmMode(int argc, char **argv)
             printResult(arg.algorithm,arg.givenInput,getInputOrder(arg.inOrder),arg.inputSize,arg.outParameter,comparison,time);
         } else
         {
-            // Print all 4 mode 
+            // Print all mode 
+            for (int i = 0; i < 4; i++)
+            {
+                ofstream fo("input_" + convertNuminFilename(i) + ".txt"); 
+                fo << arg.inputSize << endl;
+
+                GenerateData(a,arg.inputSize,i);
+                for (int j = 0; j < arg.inputSize; j++) fo << a[j] << " ";
+                fo.close();
+
+                callSortFunction(arg.algorithm,a,arg.inputSize,comparison,time);
+                printResult(arg.algorithm,"",i,arg.inputSize,arg.outParameter,comparison,time);
+            }
         }
     }
     
