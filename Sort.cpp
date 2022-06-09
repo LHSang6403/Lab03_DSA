@@ -332,3 +332,28 @@ void BubbleSort(int arr[], int sz, int &comparison, double &time){
     end = clock();
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
+
+void InsertionSort(int arr[], int sz, int &comparison, double &time){
+    comparison = 0;
+    time = 0;
+
+    int i, j;
+    int key;
+
+    clock_t start, end;
+    start = clock();
+
+    for(int i = 1; ++comparison && i < sz; i++){
+        key = arr[i];
+        j = i - 1;
+
+        while( ++comparison && j >= 0 && ++comparison && arr[j] > key){
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = key;
+    }
+
+    end = clock();
+    time = (double)(end - start) / CLOCKS_PER_SEC;
+}
