@@ -108,7 +108,7 @@ ModeA inputAlgorithmMode(int argc, char **argv)
 void printResult(string algorithm, string filename, int inOrder, int size, string outParameter, unsigned long long comparison, double time)
 {
     cout << "==================================" << endl;
-    cout << "Algorithm: " << makeBeautifulName(algorithm) << endl;
+    cout << "Algorithm:  " << makeBeautifulName(algorithm) << endl;
     if (filename != "") cout << "Input File: " << filename << endl;
     cout << "Input Size: " << size << endl;
     if (inOrder != -1) cout << "Input Order: ";
