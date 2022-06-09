@@ -145,7 +145,7 @@ void CountingSort(int *&a, int n, unsigned long long &comparison, double &time)
         flag[a[i]]--;
     }
 
-    delete a;
+    delete []a;
     a = res;
     delete flag;
 
@@ -175,7 +175,7 @@ void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
             flag[(a[j] / i) % 10]--;
         }
 
-        delete a;
+        delete []a;
         a = res;
     }
     end = clock();
@@ -183,6 +183,7 @@ void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/radix-sort/
 }
+
 void findMaxMin(int arr[], int n, unsigned long long &comparison, int &max, int &minVal)
 {
 
@@ -194,6 +195,7 @@ void findMaxMin(int arr[], int n, unsigned long long &comparison, int &max, int 
             minVal = arr[i];
     }
 }
+
 void FlashSort(int arr[], int n, unsigned long long &comparison, double &time)
 {
     clock_t start, end;
