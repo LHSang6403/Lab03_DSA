@@ -71,7 +71,7 @@ string makeBeautifulName(string algorithm)
 void callSortFunction(string algorithm, int a[], int n, int &comparison, double &time)
 {
     if (algorithm == "selection-sort");
-    if (algorithm == "insertion-sort");
+    if (algorithm == "insertion-sort") InsertionSort(a,n,comparison,time);
     if (algorithm == "bubble-sort") BubbleSort(a,n,comparison,time);
     if (algorithm == "shaker-sort") ShakerSort(a,n,comparison,time);
     if (algorithm == "shell-sort") ShellSort(a,n,comparison,time);
