@@ -280,3 +280,55 @@ void FlashSort(int arr[], int n, int &comparison, double &time)
 
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
+
+void buildHeap(int arr[], int n, int i, int &comparison, double &time){
+    int max = i;
+    int l = i * 2;
+    int r = (i * 2) + 1;
+    
+    // find node has max value
+    if(++comparison && l < n && ++comparison && arr[l] > arr[max]) max = l;
+    if(++comparison && r < n && ++comparison && arr[r] > arr[max]) max = r;
+
+    if(++comparison && max != i){ // swap max to parent, calling recursive
+        swap(arr[max], arr[i]);
+        buildHeap(arr, n, max, comparison, time); // recursive to child node
+    }
+}
+
+void HeapSort(int arr[], int sz, int &comparison, double &time){
+    comparison = 0;
+    time = 0;
+
+    clock_t start, end;
+    start = clock();
+
+    
+    for(int i = (sz / 2) - 1; ++comparison && i >= 0; i--){ // array has n elements -> has n/2 parent element
+        buildHeap(arr, sz, i, comparison, time);
+    }
+    for(int j = sz - 1; ++comparison && j > 0; j--){
+        swap(arr[0], arr[j]);
+        buildHeap(arr, j, 0, comparison, time);
+    }
+
+    end = clock();
+    time = (double)(end - start) / CLOCKS_PER_SEC;
+}
+
+void BubbleSort(int arr[], int sz, int &comparison, double &time){
+    comparison = 0;
+    time = 0;
+
+    clock_t start, end;
+    start = clock();
+
+    for(int i = 0; ++comparison && i < sz-1; i++){
+        for(int j = sz-1; ++comparison && j > i; j--){
+            if(++comparison && arr[j] < arr[j-1]) swap(arr[j], arr[j-1]);
+        }
+    }
+
+    end = clock();
+    time = (double)(end - start) / CLOCKS_PER_SEC;
+}
