@@ -84,7 +84,7 @@ void printResult(string algorithm, string filename, int inOrder, int size, strin
     cout << "Algorithm: " << algorithm << endl;
     if (filename != "") cout << "Input File: " << filename << endl;
     cout << "Input Size: " << size << endl;
-    cout << "Input Order: ";
+    if (inOrder != -1) cout << "Input Order: ";
     switch (inOrder)
     {
         case 0: 
@@ -122,7 +122,10 @@ void processAlgorithmMode(int argc, char **argv)
         fi >> arg.inputSize;
         a = new int [arg.inputSize];
 
-        for (int i = 0; i < arg.inputSize; i++) cin >> a[i];
+        for (int i = 0; i < arg.inputSize; i++) fi >> a[i];
+
+        callSortFunction(arg.algorithm,a,arg.inputSize,comparison,time);
+        printResult(arg.algorithm,arg.givenInput,getInputOrder(arg.inOrder),arg.inputSize,arg.outParameter,comparison,time);
     } else 
     {
         if (arg.inOrder != "") 
