@@ -69,7 +69,7 @@ string makeBeautifulName(string algorithm)
     return algorithm;
 }
 
-void callSortFunction(string algorithm, int a[], int n, int &comparison, double &time)
+void callSortFunction(string algorithm, int a[], int n, unsigned long long &comparison, double &time)
 {
     if (algorithm == "selection-sort");
     if (algorithm == "insertion-sort") InsertionSort(a,n,comparison,time);
@@ -105,7 +105,7 @@ ModeA inputAlgorithmMode(int argc, char **argv)
     return res;
 }
 
-void printResult(string algorithm, string filename, int inOrder, int size, string outParameter, int comparison, double time)
+void printResult(string algorithm, string filename, int inOrder, int size, string outParameter, unsigned long long comparison, double time)
 {
     cout << "==================================" << endl;
     cout << "Algorithm: " << makeBeautifulName(algorithm) << endl;
@@ -147,7 +147,7 @@ string convertNuminFilename(int num)
 void processAlgorithmMode(int argc, char **argv)
 {
     ModeA arg = inputAlgorithmMode(argc,argv);
-    int comparison = 0;
+    unsigned long long comparison = 0;
     double time = 0;
 
     int *a = NULL;
@@ -220,7 +220,7 @@ void processComparisonMode(int argc, char **argv)
     ModeC arg = inputComparisonMode(argc,argv);
 
     int *a1 = NULL, *a2 = NULL;
-    int comp1 = 0, comp2 = 0;
+    unsigned long long comp1 = 0, comp2 = 0;
     double time1 = 0, time2 = 0;
     
     if (arg.givenInput == "")

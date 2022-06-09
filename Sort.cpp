@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void ShakerSort(int arr[], int n, int &comparison, double &time)
+void ShakerSort(int arr[], int n, unsigned long long &comparison, double &time)
 {
     int up = 0,
         down = n - 1,
@@ -42,7 +42,7 @@ void ShakerSort(int arr[], int n, int &comparison, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void createGap(int n, int gap[], int &gap_num, int &comparison)
+void createGap(int n, int gap[], int &gap_num, unsigned long long &comparison)
 {
     gap[0] = 1;
     for (int i = 1; ++comparison, gap[i - 1] < n; i++)
@@ -52,7 +52,7 @@ void createGap(int n, int gap[], int &gap_num, int &comparison)
     }
 }
 
-void ShellSort(int a[], int n, int &comparison, double &time)
+void ShellSort(int a[], int n, unsigned long long &comparison, double &time)
 {
     clock_t start, end;
     comparison = 0, time = 0;
@@ -87,7 +87,7 @@ void ShellSort(int a[], int n, int &comparison, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void QUICKSORT(int a[], int l, int r, int &comparison)
+void QUICKSORT(int a[], int l, int r, unsigned long long &comparison)
 {
     int i = l - 1, j = r + 1, m = a[(i + j) / 2];
     do
@@ -112,7 +112,7 @@ void QUICKSORT(int a[], int l, int r, int &comparison)
         QUICKSORT(a, i, r, comparison);
 }
 
-void QuickSort(int a[], int n, int &comparison, double &time)
+void QuickSort(int a[], int n, unsigned long long &comparison, double &time)
 {
     clock_t start, end;
     comparison = 0;
@@ -125,7 +125,7 @@ void QuickSort(int a[], int n, int &comparison, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void CountingSort(int *&a, int n, int &comparison, double &time)
+void CountingSort(int *&a, int n, unsigned long long &comparison, double &time)
 {
     clock_t start, end;
     comparison = 0;
@@ -154,7 +154,7 @@ void CountingSort(int *&a, int n, int &comparison, double &time)
     // Ref: https://www.geeksforgeeks.org/counting-sort/
 }
 
-void RadixSort(int *&a, int n, int &comparison, double &time)
+void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
 {
     clock_t start, end;
     comparison = 0;
@@ -183,7 +183,7 @@ void RadixSort(int *&a, int n, int &comparison, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/radix-sort/
 }
-void findMaxMin(int arr[], int n, int &comparison, int &max, int &minVal)
+void findMaxMin(int arr[], int n, unsigned long long &comparison, int &max, int &minVal)
 {
 
     for (int i = 0;++comparison, i < n; i++)
@@ -194,7 +194,7 @@ void findMaxMin(int arr[], int n, int &comparison, int &max, int &minVal)
             minVal = arr[i];
     }
 }
-void FlashSort(int arr[], int n, int &comparison, double &time)
+void FlashSort(int arr[], int n, unsigned long long &comparison, double &time)
 {
     clock_t start, end;
     comparison = 0, time = 0;
@@ -271,7 +271,7 @@ void FlashSort(int arr[], int n, int &comparison, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void buildHeap(int arr[], int n, int i, int &comparison, double &time){
+void buildHeap(int arr[], int n, int i, unsigned long long &comparison, double &time){
     int max = i;
     int l = i * 2;
     int r = (i * 2) + 1;
@@ -286,7 +286,7 @@ void buildHeap(int arr[], int n, int i, int &comparison, double &time){
     }
 }
 
-void HeapSort(int arr[], int sz, int &comparison, double &time){
+void HeapSort(int arr[], int sz, unsigned long long &comparison, double &time){
     comparison = 0;
     time = 0;
 
@@ -306,7 +306,7 @@ void HeapSort(int arr[], int sz, int &comparison, double &time){
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void BubbleSort(int arr[], int sz, int &comparison, double &time){
+void BubbleSort(int arr[], int sz, unsigned long long &comparison, double &time){
     comparison = 0;
     time = 0;
 
@@ -323,7 +323,7 @@ void BubbleSort(int arr[], int sz, int &comparison, double &time){
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void InsertionSort(int arr[], int sz, int &comparison, double &time){
+void InsertionSort(int arr[], int sz, unsigned long long &comparison, double &time){
     comparison = 0;
     time = 0;
 
