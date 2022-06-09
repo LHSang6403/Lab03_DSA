@@ -7,3 +7,4 @@ void FlashSort(int arr[], int n, int &comparison, double &time);
 void buildHeap(int arr[], int n, int i, int &comparison, double &time);
 void HeapSort(int arr[], int sz, int &comparison, double &time);
 void BubbleSort(int arr[], int sz, int &comparison, double &time);
+void InsertionSort(int arr[], int sz, int &comparison, double &time);
