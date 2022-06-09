@@ -337,7 +337,7 @@ void InsertionSort(int arr[], int sz, int &comparison, double &time){
         key = arr[i];
         j = i - 1;
 
-        while( ++comparison && j >= 0 && ++comparison && arr[j] > key){
+        while(++comparison && j >= 0 && ++comparison && arr[j] > key){
             arr[j+1] = arr[j];
             j--;
         }
