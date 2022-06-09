@@ -72,10 +72,10 @@ void callSortFunction(string algorithm, int a[], int n, int &comparison, double 
 {
     if (algorithm == "selection-sort");
     if (algorithm == "insertion-sort");
-    if (algorithm == "bubble-sort");
+    if (algorithm == "bubble-sort") BubbleSort(a,n,comparison,time);
     if (algorithm == "shaker-sort") ShakerSort(a,n,comparison,time);
     if (algorithm == "shell-sort") ShellSort(a,n,comparison,time);
-    if (algorithm == "heap-sort");
+    if (algorithm == "heap-sort") HeapSort(a,n,comparison,time);
     if (algorithm == "merge-sort");
     if (algorithm == "counting-sort") CountingSort(a,n,comparison,time);
     if (algorithm == "quick-sort") QuickSort(a,n,comparison,time);
