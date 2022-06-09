@@ -19,9 +19,8 @@ void ShakerSort(int arr[], int n, int &comparison, double &time)
     start = clock();
     while (++comparison && up < down)
     {
-        for (int i = up; i < down; i++)
+        for (int i = up;++comparison, i < down; i++)
         {
-            ++comparison;
             if (++comparison && arr[i] > arr[i + 1])
             {
                 swap(arr[i], arr[i + 1]);
@@ -29,9 +28,8 @@ void ShakerSort(int arr[], int n, int &comparison, double &time)
             }
         }
         down = hv;
-        for (int j = down; j > up; j--)
+        for (int j = down;++comparison, j > up; j--)
         {
-            ++comparison;
             if (++comparison && arr[j - 1] > arr[j])
             {
                 swap(arr[j - 1], arr[j]);
@@ -47,9 +45,8 @@ void ShakerSort(int arr[], int n, int &comparison, double &time)
 void createGap(int n, int gap[], int &gap_num, int &comparison)
 {
     gap[0] = 1;
-    for (int i = 1; gap[i - 1] < n; i++)
+    for (int i = 1; ++comparison, gap[i - 1] < n; i++)
     {
-        ++comparison;
         gap[i] = 3 * gap[i - 1] + 1;
         gap_num++;
     }
@@ -69,13 +66,11 @@ void ShellSort(int a[], int n, int &comparison, double &time)
         j = 0,
         t = 0,
         x = 0;
-    for (p = 0; p < gap_num; p++)
+    for (p = 0;++comparison, p < gap_num; p++)
     {
-        ++comparison;
         t = gap[p];
-        for (int i = t; i < n; i++)
+        for (int i = t;++comparison, i < n; i++)
         {
-            ++comparison;
             x = a[i];
             j = i;
             while (++comparison && ++comparison && x < a[j - t] && j >= t)
@@ -191,9 +186,8 @@ void RadixSort(int *&a, int n, int &comparison, double &time)
 void findMaxMin(int arr[], int n, int &comparison, int &max, int &minVal)
 {
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0;++comparison, i < n; i++)
     {
-        ++comparison;
         if (++comparison && arr[i] > arr[max])
             max = i;
         if (++comparison && arr[i] < minVal)
@@ -217,24 +211,21 @@ void FlashSort(int arr[], int n, int &comparison, double &time)
     int bucketNum = (int)(0.45 * n);
     int *bucket = new int[bucketNum];
     // Initialize value of bucket with 0
-    for (int i = 0; i < bucketNum; i++)
+    for (int i = 0;++comparison, i < bucketNum; i++)
     {
-        ++comparison;
         bucket[i] = 0;
     }
 
     const float c = (bucketNum - 1) / (arr[max] - minVal);
     //Count the number value of each bucket
-    for (int i = 0; i < n; i++)
+    for (int i = 0;++comparison, i < n; i++)
     {
-        ++comparison;
         int temp = int(c * (arr[i] - minVal));
         bucket[temp] += 1;
     }
     //Calc the lastest index of each bucket
-    for (int i = 1; i < bucketNum; i++)
+    for (int i = 1;++comparison, i < bucketNum; i++)
     {
-        ++comparison;
         bucket[i] += bucket[i - 1];
     }
 
@@ -262,9 +253,8 @@ void FlashSort(int arr[], int n, int &comparison, double &time)
         }
     }
     //Insertion sort
-    for (int idx = 1; idx < n; idx++)
+    for (int idx = 1;++comparison, idx < n; idx++)
     {
-        ++comparison;
         int hold = arr[idx];
         int idx_temp = idx - 1;
         while (++comparison && ++comparison && idx_temp >= 0 && arr[idx_temp] > hold)

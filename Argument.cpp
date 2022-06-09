@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <fstream>
 #include "DataGenerator.h"
 #include "Sort.h"
