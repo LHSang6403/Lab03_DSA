@@ -187,7 +187,90 @@ void RadixSort(int *&a, int n, int &comparision, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/radix-sort/
 }
-void FlashSort(int a[], int n, int &comparision, double &time)
+void findMaxMin(int arr[], int n, int &comparision, int &max, int &minVal)
 {
-    
+
+    for (int i = 0; i < n; i++)
+    {
+        ++comparision;
+        if (++comparision && arr[i] > arr[max])
+            max = i;
+        if (++comparision && arr[i] < minVal)
+            minVal = arr[i];
+    }
+}
+void FlashSort(int arr[], int n, int &comparision, double &time)
+{
+    clock_t start, end;
+    comparision = 0, time = 0;
+
+    start = clock();
+
+    int max = 0,
+        minVal = arr[0];
+
+    findMaxMin(arr, n, comparision, max, minVal);
+
+    int bucketNum = (int)(0.45 * n);
+    int *bucket = new int[bucketNum];
+    for (int i = 0; i < bucketNum; i++)
+    {
+        ++comparision;
+        bucket[i] = 0;
+    }
+
+    const float c = (bucketNum - 1) / (arr[max] - minVal);
+
+    for (int i = 0; i < n; i++)
+    {
+        ++comparision;
+        int temp = int(c * (arr[i] - minVal));
+        bucket[temp] += 1;
+    }
+
+    for (int i = 1; i < bucketNum; i++)
+    {
+        ++comparision;
+        bucket[i] += bucket[i - 1];
+    }
+
+    swap(arr[max], arr[0]);
+
+    int move = 0, j = 0, flash, k = bucketNum - 1;
+
+    while (++comparision && move < (n - 1))
+    {
+        while (++comparision && j > (bucket[k] - 1))
+        {
+            ++j;
+            k = int(c * (arr[j] - minVal));
+        }
+
+        if (++comparision && k < 0)
+            break;
+        flash = arr[j];
+        while (++comparision && j != bucket[k])
+        {
+            k = int(c * (flash - minVal));
+            --bucket[k];
+            swap(bucket[k], flash);
+            ++move;
+        }
+    }
+    for (int idx = 1; idx < n; idx++)
+    {
+        ++comparision;
+        int hold = arr[idx];
+        int idx_temp = idx - 1;
+        while (++comparision && ++comparision && idx_temp >= 0 && arr[idx_temp] > hold)
+        {
+            arr[idx_temp + 1] = arr[idx_temp];
+            idx_temp--;
+        }
+        arr[idx_temp + 1] = hold;
+    }
+    delete[] bucket;
+
+    end = clock();
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
