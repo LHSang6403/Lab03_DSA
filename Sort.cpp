@@ -209,10 +209,13 @@ void FlashSort(int arr[], int n, int &comparision, double &time)
     int max = 0,
         minVal = arr[0];
 
+    // Find min value and index of max value
     findMaxMin(arr, n, comparision, max, minVal);
 
+    // Create bucket to store value
     int bucketNum = (int)(0.45 * n);
     int *bucket = new int[bucketNum];
+    // Initialize value of bucket with 0
     for (int i = 0; i < bucketNum; i++)
     {
         ++comparision;
@@ -220,14 +223,14 @@ void FlashSort(int arr[], int n, int &comparision, double &time)
     }
 
     const float c = (bucketNum - 1) / (arr[max] - minVal);
-
+    //Count the number value of each bucket
     for (int i = 0; i < n; i++)
     {
         ++comparision;
         int temp = int(c * (arr[i] - minVal));
         bucket[temp] += 1;
     }
-
+    //Calc the lastest index of each bucket
     for (int i = 1; i < bucketNum; i++)
     {
         ++comparision;
@@ -237,7 +240,7 @@ void FlashSort(int arr[], int n, int &comparision, double &time)
     swap(arr[max], arr[0]);
 
     int move = 0, j = 0, flash, k = bucketNum - 1;
-
+    // permutation
     while (++comparision && move < (n - 1))
     {
         while (++comparision && j > (bucket[k] - 1))
@@ -257,6 +260,7 @@ void FlashSort(int arr[], int n, int &comparision, double &time)
             ++move;
         }
     }
+    //Insertion sort
     for (int idx = 1; idx < n; idx++)
     {
         ++comparision;
@@ -272,5 +276,6 @@ void FlashSort(int arr[], int n, int &comparision, double &time)
     delete[] bucket;
 
     end = clock();
+
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
