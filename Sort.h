@@ -4,7 +4,6 @@ void QuickSort(int a[], int n, unsigned long long &comparison, double &time);
 void CountingSort(int *&a, int n, unsigned long long &comparison, double &time);
 void RadixSort(int *&a, int n, unsigned long long &comparison, double &time);
 void FlashSort(int arr[], int n, unsigned long long &comparison, double &time);
-void buildHeap(int arr[], int n, int i, unsigned long long &comparison, double &time);
 void HeapSort(int arr[], int sz, unsigned long long &comparison, double &time);
 void BubbleSort(int arr[], int sz, unsigned long long &comparison, double &time);
 void InsertionSort(int arr[], int sz, unsigned long long &comparison, double &time);
