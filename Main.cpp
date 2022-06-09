@@ -9,13 +9,13 @@ int main()
     int n = 100000;
     int *a = new int [n];
     GenerateData(a,n,2);
-    int comparision = 0;
+    int comparison = 0;
     double time = 0;
 
-    // QuickSort(a,n,comparision,time);
-    FlashSort(a, n, comparision, time);
+    // QuickSort(a,n,comparison,time);
+    FlashSort(a, n, comparison, time);
     //for (int i = 0; i < n; i++) cout << a[i] << " ";
-    cout << endl << comparision << " " << time;
+    cout << endl << comparison << " " << time;
 
     return 0;
 }
