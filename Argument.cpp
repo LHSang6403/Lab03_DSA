@@ -21,6 +21,21 @@ struct ModeA
     }
 };
 
+struct ModeC
+{
+    string algo1;
+    string algo2;
+    string givenInput;
+    int inputSize;
+    string inOrder;
+
+    ModeC()
+    {
+        algo1 = algo2 = givenInput = inOrder = "";
+        inputSize = 0;
+    }
+};
+
 bool validGivenInput(string filename)
 {
     for (int i = 0; i < filename.length(); i++)
@@ -41,6 +56,16 @@ int getInputOrder(string order)
     if (order == "-rev") return 2;
     if (order == "-nsorted") return 3;
     return -1;
+}
+
+string makeBeautifulName(string algorithm)
+{
+    algorithm[0] = toupper(algorithm[0]);
+
+    int pos = algorithm.find("-");
+    algorithm[pos] = ' ';
+    algorithm[pos + 1] = toupper(algorithm[pos + 1]);
+    return algorithm;
 }
 
 void callSortFunction(string algorithm, int a[], int n, int &comparison, double &time)
@@ -82,7 +107,7 @@ ModeA inputAlgorithmMode(int argc, char **argv)
 void printResult(string algorithm, string filename, int inOrder, int size, string outParameter, int comparison, double time)
 {
     cout << "==================================" << endl;
-    cout << "Algorithm: " << algorithm << endl;
+    cout << "Algorithm: " << makeBeautifulName(algorithm) << endl;
     if (filename != "") cout << "Input File: " << filename << endl;
     cout << "Input Size: " << size << endl;
     if (inOrder != -1) cout << "Input Order: ";
@@ -101,7 +126,7 @@ void printResult(string algorithm, string filename, int inOrder, int size, strin
             cout << "Nearly Sorted" << endl;
             break;
     }
-    cout << "------------------------------" << endl;
+    cout << "----------------------------------" << endl;
     cout << "Running time: ";
     if (outParameter == "-both" || outParameter == "-time") cout << time << endl; else cout << "Not Required" << endl;
     cout << "Comparisons: ";
@@ -171,9 +196,66 @@ void processAlgorithmMode(int argc, char **argv)
     
 }
 
+ModeC inputComparisonMode(int argc, char **argv)
+{
+    ModeC res;
+
+    res.algo1 = argv[2];
+    res.algo2 = argv[3];
+    res.givenInput = argv[4];
+    if (!validGivenInput(res.givenInput))
+    {
+        res.inputSize = stoi(res.givenInput);
+        res.givenInput = "";
+    }
+
+    if (res.inputSize != 0) res.inOrder = argv[5];
+
+    return res;
+}
+
 void processComparisonMode(int argc, char **argv)
 {
+    ModeC arg = inputComparisonMode(argc,argv);
 
+    int *a1 = NULL, *a2 = NULL;
+    int comp1 = 0, comp2 = 0;
+    double time1 = 0, time2 = 0;
+    
+    if (arg.givenInput == "")
+    {
+        a1 = new int [arg.inputSize];
+        a2 = new int [arg.inputSize];
+
+        GenerateData(a1,arg.inputSize,getInputOrder(arg.inOrder));
+
+        ofstream fo("input.txt");
+        fo << arg.inputSize << endl;
+        for (int i = 0; i < arg.inputSize; i++) 
+        {   
+            a2[i] = a1[i];
+            fo << a1[i] << " ";
+        }
+    } else 
+    {
+        ifstream fi(arg.givenInput);
+        fi >> arg.inputSize;
+
+        a1 = new int [arg.inputSize];
+        a2 = new int [arg.inputSize];
+
+        for (int i = 0; i < arg.inputSize; i++)
+        {
+            fi >> a1[i];
+            a2[i] = a1[i];
+        }
+    }
+
+    callSortFunction(arg.algo1,a1,arg.inputSize,comp1,time1);
+    callSortFunction(arg.algo2,a2,arg.inputSize,comp2,time2);
+
+    printResult(arg.algo1,arg.givenInput,getInputOrder(arg.inOrder),arg.inputSize,"-both",comp1,time1);
+    printResult(arg.algo2,arg.givenInput,getInputOrder(arg.inOrder),arg.inputSize,"-both",comp2,time2);
 }
 
 void processArg(int argc, char **argv)
