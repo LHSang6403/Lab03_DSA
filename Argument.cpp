@@ -108,10 +108,10 @@ ModeA inputAlgorithmMode(int argc, char **argv)
 void printResult(string algorithm, string filename, int inOrder, int size, string outParameter, unsigned long long comparison, double time)
 {
     cout << "==================================" << endl;
-    cout << "Algorithm:  " << makeBeautifulName(algorithm) << endl;
-    if (filename != "") cout << "Input File: " << filename << endl;
-    cout << "Input Size: " << size << endl;
-    if (inOrder != -1) cout << "Input Order: ";
+    cout << "Algorithm:\t" << makeBeautifulName(algorithm) << endl;
+    if (filename != "") cout << "Input File:\t" << filename << endl;
+    cout << "Input Size:\t" << size << endl;
+    if (inOrder != -1) cout << "Input Order:\t";
     switch (inOrder)
     {
         case 0: 
@@ -128,9 +128,9 @@ void printResult(string algorithm, string filename, int inOrder, int size, strin
             break;
     }
     cout << "----------------------------------" << endl;
-    cout << "Running time: ";
+    cout << "Running time:\t";
     if (outParameter == "-both" || outParameter == "-time") cout << time << endl; else cout << "Not Required" << endl;
-    cout << "Comparisons: ";
+    cout << "Comparisons:\t";
     if (outParameter == "-both" || outParameter == "-comp") cout << comparison << endl; else cout << "Not Required" << endl;
     cout << "==================================" << endl << endl;
 }
