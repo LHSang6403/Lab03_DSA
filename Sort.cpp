@@ -160,9 +160,11 @@ void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
     comparison = 0;
 
     start = clock();
+    int *res = new int [n]{0};
+
     for (int i = 1; ++comparison, i <= pow(10, (int)log10(n) + 1); i *= 10)
     {
-        int *res = new int[n]{0};
+        //int *res = new int[n]{0};
         int flag[10] = {0};
 
         for (int j = 0; ++comparison, j < n; j++)
@@ -174,10 +176,13 @@ void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
             res[flag[(a[j] / i) % 10] - 1] = a[j];
             flag[(a[j] / i) % 10]--;
         }
-
-        delete []a;
-        a = res;
+        for (int j = 0; ++comparison, j < n; j++) 
+        {
+            a[j] = res[j];
+            res[j] = 0;
+        }
     }
+    delete []res;
     end = clock();
 
     time = (double)(end - start) / CLOCKS_PER_SEC;
