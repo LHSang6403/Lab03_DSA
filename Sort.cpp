@@ -272,7 +272,7 @@ void FlashSort(int arr[], int n, unsigned long long &comparison, double &time)
         arr[idx_temp + 1] = hold;
     }
     delete[] bucket;
-
+    
     end = clock();
 
     time = (double)(end - start) / CLOCKS_PER_SEC;
