@@ -69,6 +69,23 @@ string makeBeautifulName(string algorithm)
     return algorithm;
 }
 
+string displayCommainNum(unsigned long long num)
+{
+    string res = "";
+    
+    while (num != 0)
+    {
+        string temp = to_string(num % 1000);
+        num /= 1000;
+
+        while (temp.length() != 3 && num != 0) temp = '0' + temp;
+        res = temp + res;
+        if (num != 0) res = ',' + res;
+    }
+    
+    return res;
+}
+
 void callSortFunction(string algorithm, int a[], int n, unsigned long long &comparison, double &time)
 {
     if (algorithm == "selection-sort");
@@ -110,7 +127,7 @@ void printResult(string algorithm, string filename, int inOrder, int size, strin
     cout << "==================================" << endl;
     cout << "Algorithm:\t" << makeBeautifulName(algorithm) << endl;
     if (filename != "") cout << "Input File:\t" << filename << endl;
-    cout << "Input Size:\t" << size << endl;
+    cout << "Input Size:\t" << displayCommainNum(size) << endl;
     if (inOrder != -1) cout << "Input Order:\t";
     switch (inOrder)
     {
@@ -131,7 +148,7 @@ void printResult(string algorithm, string filename, int inOrder, int size, strin
     cout << "Running time:\t";
     if (outParameter == "-both" || outParameter == "-time") cout << time << endl; else cout << "Not Required" << endl;
     cout << "Comparisons:\t";
-    if (outParameter == "-both" || outParameter == "-comp") cout << comparison << endl; else cout << "Not Required" << endl;
+    if (outParameter == "-both" || outParameter == "-comp") cout << displayCommainNum(comparison) << endl; else cout << "Not Required" << endl;
     cout << "==================================" << endl << endl;
 }
 
