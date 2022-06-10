@@ -164,7 +164,6 @@ void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
 
     for (int i = 1; ++comparison, i <= pow(10, (int)log10(n) + 1); i *= 10)
     {
-        // int *res = new int[n]{0};
         int flag[10] = {0};
 
         for (int j = 0; ++comparison, j < n; j++)
