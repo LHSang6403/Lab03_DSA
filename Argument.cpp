@@ -163,6 +163,12 @@ string convertNuminFilename(int num)
 
 void processAlgorithmMode(int argc, char **argv)
 {
+    cout << "==o==o==o==o==o==o==o==o==o==o==o==o==" << endl;
+    cout << "||                                  ||" << endl;
+    cout << "||          ALGORITHM MODE          ||" << endl;
+    cout << "||                                  ||" << endl;
+    cout << "==o==o==o==o==o==o==o==o==o==o==o==o==" << endl;
+
     ModeA arg = inputAlgorithmMode(argc,argv);
     unsigned long long comparison = 0;
     double time = 0;
@@ -214,7 +220,7 @@ void processAlgorithmMode(int argc, char **argv)
     
 }
 
-ModeC inputComparisonMode(int argc, char **argv)
+ModeC inputCompareMode(int argc, char **argv)
 {
     ModeC res;
 
@@ -232,9 +238,15 @@ ModeC inputComparisonMode(int argc, char **argv)
     return res;
 }
 
-void processComparisonMode(int argc, char **argv)
+void processCompareMode(int argc, char **argv)
 {
-    ModeC arg = inputComparisonMode(argc,argv);
+    cout << "==o==o==o==o==o==o==o==o==o==o==o==o==" << endl;
+    cout << "||                                  ||" << endl;
+    cout << "||           COMPARE MODE           ||" << endl;
+    cout << "||                                  ||" << endl;
+    cout << "==o==o==o==o==o==o==o==o==o==o==o==o==" << endl;
+    
+    ModeC arg = inputCompareMode(argc,argv);
 
     int *a1 = NULL, *a2 = NULL;
     unsigned long long comp1 = 0, comp2 = 0;
@@ -279,6 +291,6 @@ void processComparisonMode(int argc, char **argv)
 void processArg(int argc, char **argv)
 {
     if (strcmp(argv[1],"-a") == 0) processAlgorithmMode(argc,argv); else 
-    if (strcmp(argv[1],"-c") == 0) processComparisonMode(argc,argv); else 
+    if (strcmp(argv[1],"-c") == 0) processCompareMode(argc,argv); else 
     cout << "Invalid Argument" << endl;
 }
