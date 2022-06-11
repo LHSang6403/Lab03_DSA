@@ -146,7 +146,7 @@ void printResult(string algorithm, string filename, int inOrder, int size, strin
     }
     cout << "----------------------------------" << endl;
     cout << "Running time:\t";
-    if (outParameter == "-both" || outParameter == "-time") cout << time << endl; else cout << "Not Required" << endl;
+    if (outParameter == "-both" || outParameter == "-time") cout << time << " s" << endl; else cout << "Not Required" << endl;
     cout << "Comparisons:\t";
     if (outParameter == "-both" || outParameter == "-comp") cout << displayCommainNum(comparison) << endl; else cout << "Not Required" << endl;
     cout << "==================================" << endl << endl;
