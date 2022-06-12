@@ -319,14 +319,12 @@ void SelectionSort_comp(int arr[], int n, unsigned long long& comparison) {
     for (int i = 0; ++comparison && i < n - 1; i++) {
         int min = i;
         for (int j = i + 1; ++comparison && j < n; j++) {
-            if (arr[j] < arr[min])
+            if (++comparison && arr[j] < arr[min])
                 min = j;
-            if (min != i && j == n - 1) {
-                int temp = arr[min];
-                arr[min] = arr[i];
-                arr[i] = temp;
-            }
         }
+        int temp = arr[min];
+        arr[min] = arr[i];
+        arr[i] = temp;
     }
 }
 void Merge(int arr[], int l, int m, int r, unsigned long long &comparison){
@@ -342,13 +340,13 @@ void Merge(int arr[], int l, int m, int r, unsigned long long &comparison){
         Rrr[j] = arr[m + j + 1];
     }
     i = 0, j = 0, k = l;
-    while ((i < n1) && (j < n2) && ++comparison){
+    while (++comparison && (i < n1) && (j < n2)){
         arr[k++] = ((Lrr[i] <= Rrr[j]) ? Lrr[i++] : Rrr[j++]);
     }
-    while ((i < n1) && ++comparison){
+    while (++comparison && (i < n1)){
         arr[k++] = Lrr[i++];
     }
-    while ((j < n2) && ++comparison){
+    while (++comparison && (j < n2)){
         arr[k++] = Rrr[j++];
     }
     delete[]Lrr;
