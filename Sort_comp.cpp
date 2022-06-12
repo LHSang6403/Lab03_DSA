@@ -2,21 +2,17 @@
 #include <math.h>
 #include <iostream>
 #include <algorithm>
-#include <chrono>
 
 using namespace std;
 
-void ShakerSort(int arr[], int n, unsigned long long &comparison, double &time)
+void ShakerSort_comp(int arr[], int n, unsigned long long &comparison)
 {
     int up = 0,
         down = n - 1,
         hv = 0; // store the last position of each swap.
 
-    clock_t start, end;
     comparison = 0;
-    time = 0;
 
-    start = clock();
     while (++comparison && up < down)
     {
         for (int i = up; ++comparison, i < down; i++)
@@ -38,8 +34,6 @@ void ShakerSort(int arr[], int n, unsigned long long &comparison, double &time)
         }
         up = hv;
     }
-    end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void createGap(int n, int gap[], int &gap_num, unsigned long long &comparison)
@@ -52,14 +46,13 @@ void createGap(int n, int gap[], int &gap_num, unsigned long long &comparison)
     }
 }
 
-void ShellSort(int a[], int n, unsigned long long &comparison, double &time)
+void ShellSort_comp(int a[], int n, unsigned long long &comparison)
 {
-    clock_t start, end;
-    comparison = 0, time = 0;
+    comparison = 0;
 
     int *gap = new int[n],
         gap_num = 0;
-    start = clock();
+    
     createGap(n, gap, gap_num, comparison);
 
     int p = 0,
@@ -82,9 +75,6 @@ void ShellSort(int a[], int n, unsigned long long &comparison, double &time)
         }
     }
     delete[] gap;
-
-    end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void QUICKSORT(int a[], int l, int r, unsigned long long &comparison)
@@ -112,29 +102,20 @@ void QUICKSORT(int a[], int l, int r, unsigned long long &comparison)
         QUICKSORT(a, i, r, comparison);
 }
 
-void QuickSort(int a[], int n, unsigned long long &comparison, double &time)
+void QuickSort_comp(int a[], int n, unsigned long long &comparison)
 {
-    clock_t start, end;
     comparison = 0;
-    time = 0;
-
-    start = clock();
     QUICKSORT(a, 0, n - 1, comparison);
-    end = clock();
-
-    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void CountingSort(int *&a, int n, unsigned long long &comparison, double &time)
+void CountingSort_comp(int *&a, int n, unsigned long long &comparison)
 {
-    clock_t start, end;
     comparison = 0;
 
     // According to randomize code, the elements' range is from 1 to n-1
     int *flag = new int[n]{0};
     int *res = new int[n];
 
-    start = clock();
     for (int i = 0; ++comparison, i < n; i++)
         flag[a[i]]++;
     for (int i = 1; ++comparison, i < n; i++)
@@ -148,18 +129,14 @@ void CountingSort(int *&a, int n, unsigned long long &comparison, double &time)
     delete[] a;
     a = res;
     delete flag;
-
-    end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
+    
     // Ref: https://www.geeksforgeeks.org/counting-sort/
 }
 
-void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
+void RadixSort_comp(int *&a, int n, unsigned long long &comparison)
 {
-    clock_t start, end;
     comparison = 0;
 
-    start = clock();
     int *res = new int[n]{0};
 
     for (int i = 1; ++comparison, i <= pow(10, (int)log10(n) + 1); i *= 10)
@@ -182,9 +159,7 @@ void RadixSort(int *&a, int n, unsigned long long &comparison, double &time)
         }
     }
     delete[] res;
-    end = clock();
 
-    time = (double)(end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/radix-sort/
 }
 
@@ -200,12 +175,9 @@ void findMaxMin(int arr[], int n, unsigned long long &comparison, int &max, int 
     }
 }
 
-void FlashSort(int arr[], int n, unsigned long long &comparison, double &time)
+void FlashSort_comp(int arr[], int n, unsigned long long &comparison)
 {
-    clock_t start, end;
-    comparison = 0, time = 0;
-
-    start = clock();
+    comparison = 0;
 
     int max = 0,
         minVal = arr[0];
@@ -271,13 +243,9 @@ void FlashSort(int arr[], int n, unsigned long long &comparison, double &time)
         arr[idx_temp + 1] = hold;
     }
     delete[] bucket;
-    
-    end = clock();
-
-    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void buildHeap(int arr[], int n, int i, unsigned long long &comparison, double &time)
+void buildHeap(int arr[], int n, int i, unsigned long long &comparison)
 {
     int max = i;
     int l = i * 2;
@@ -292,39 +260,28 @@ void buildHeap(int arr[], int n, int i, unsigned long long &comparison, double &
     if (++comparison && max != i)
     { // swap max to parent, calling recursive
         swap(arr[max], arr[i]);
-        buildHeap(arr, n, max, comparison, time); // recursive to child node
+        buildHeap(arr, n, max, comparison); // recursive to child node
     }
 }
 
-void HeapSort(int arr[], int sz, unsigned long long &comparison, double &time)
+void HeapSort_comp(int arr[], int sz, unsigned long long &comparison)
 {
     comparison = 0;
-    time = 0;
-
-    clock_t start, end;
-    start = clock();
 
     for (int i = (sz / 2) - 1; ++comparison && i >= 0; i--)
     { // array has n elements -> has n/2 parent element
-        buildHeap(arr, sz, i, comparison, time);
+        buildHeap(arr, sz, i, comparison);
     }
     for (int j = sz - 1; ++comparison && j > 0; j--)
     {
         swap(arr[0], arr[j]);
-        buildHeap(arr, j, 0, comparison, time);
+        buildHeap(arr, j, 0, comparison);
     }
-
-    end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void BubbleSort(int arr[], int sz, unsigned long long &comparison, double &time)
+void BubbleSort_comp(int arr[], int sz, unsigned long long &comparison)
 {
     comparison = 0;
-    time = 0;
-
-    clock_t start, end;
-    start = clock();
 
     for (int i = 0; ++comparison && i < sz - 1; i++)
     {
@@ -334,21 +291,14 @@ void BubbleSort(int arr[], int sz, unsigned long long &comparison, double &time)
                 swap(arr[j], arr[j - 1]);
         }
     }
-
-    end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
-void InsertionSort(int arr[], int sz, unsigned long long &comparison, double &time)
+void InsertionSort_comp(int arr[], int sz, unsigned long long &comparison)
 {
     comparison = 0;
-    time = 0;
 
     int i, j;
     int key;
-
-    clock_t start, end;
-    start = clock();
 
     for (int i = 1; ++comparison && i < sz; i++)
     {
@@ -362,7 +312,4 @@ void InsertionSort(int arr[], int sz, unsigned long long &comparison, double &ti
         }
         arr[j + 1] = key;
     }
-
-    end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
 }

@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include "DataGenerator.h"
-#include "Sort.h"
+#include "Sort_comp.h"
 
 using namespace std;
 
@@ -89,16 +89,43 @@ string displayCommainNum(unsigned long long num)
 void callSortFunction(string algorithm, int a[], int n, unsigned long long &comparison, double &time)
 {
     if (algorithm == "selection-sort");
-    if (algorithm == "insertion-sort") InsertionSort(a,n,comparison,time);
-    if (algorithm == "bubble-sort") BubbleSort(a,n,comparison,time);
-    if (algorithm == "shaker-sort") ShakerSort(a,n,comparison,time);
-    if (algorithm == "shell-sort") ShellSort(a,n,comparison,time);
-    if (algorithm == "heap-sort") HeapSort(a,n,comparison,time);
+    if (algorithm == "insertion-sort") 
+    {   
+        InsertionSort_comp(a,n,comparison);
+    }
+    if (algorithm == "bubble-sort") 
+    {
+        BubbleSort_comp(a,n,comparison);
+    }
+    if (algorithm == "shaker-sort") 
+    {
+        ShakerSort_comp(a,n,comparison);
+    }
+    if (algorithm == "shell-sort") 
+    {
+        ShellSort_comp(a,n,comparison);
+    }
+    if (algorithm == "heap-sort") 
+    {
+        HeapSort_comp(a,n,comparison);
+    }
     if (algorithm == "merge-sort");
-    if (algorithm == "counting-sort") CountingSort(a,n,comparison,time);
-    if (algorithm == "quick-sort") QuickSort(a,n,comparison,time);
-    if (algorithm == "radix-sort") RadixSort(a,n,comparison,time);
-    if (algorithm == "flash-sort") FlashSort(a,n,comparison,time);
+    if (algorithm == "counting-sort") 
+    {
+        CountingSort_comp(a,n,comparison);
+    }
+    if (algorithm == "quick-sort") 
+    {
+        QuickSort_comp(a,n,comparison);
+    }
+    if (algorithm == "radix-sort") 
+    {
+        RadixSort_comp(a,n,comparison);
+    }
+    if (algorithm == "flash-sort") 
+    {
+        FlashSort_comp(a,n,comparison);
+    }
 }
 
 ModeA inputAlgorithmMode(int argc, char **argv)
