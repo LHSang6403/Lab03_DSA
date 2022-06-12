@@ -354,6 +354,8 @@ void processCompareMode(int argc, char **argv)
 
 void processArg(int argc, char **argv)
 {
+    if (argc != 5 || argc !=6) cout << "Invalid Argument" << endl;
+
     if (strcmp(argv[1],"-a") == 0) processAlgorithmMode(argc,argv); else 
     if (strcmp(argv[1],"-c") == 0) processCompareMode(argc,argv); else 
     cout << "Invalid Argument" << endl;
