@@ -4,6 +4,7 @@
 #include <fstream>
 #include "DataGenerator.h"
 #include "Sort_comp.h"
+#include "Sort_time.h"
 
 using namespace std;
 
@@ -88,44 +89,73 @@ string displayCommainNum(unsigned long long num)
 
 void callSortFunction(string algorithm, int a[], int n, unsigned long long &comparison, double &time)
 {
-    if (algorithm == "selection-sort");
+    int *b = new int [n];
+    for (int i = 0; i < n; i++) b[i] = a[i];
+    
+    if (algorithm == "selection-sort"); else 
+
     if (algorithm == "insertion-sort") 
     {   
         InsertionSort_comp(a,n,comparison);
-    }
+        InsertionSort_time(b,n,time);
+    } else 
+
     if (algorithm == "bubble-sort") 
     {
         BubbleSort_comp(a,n,comparison);
-    }
+        BubbleSort_time(b,n,time);
+    } else 
+
     if (algorithm == "shaker-sort") 
     {
         ShakerSort_comp(a,n,comparison);
-    }
+        ShakerSort_time(b,n,time);
+    } else
+
     if (algorithm == "shell-sort") 
     {
         ShellSort_comp(a,n,comparison);
-    }
+        ShellSort_time(b,n,time);
+    } else 
+
     if (algorithm == "heap-sort") 
     {
         HeapSort_comp(a,n,comparison);
-    }
-    if (algorithm == "merge-sort");
+        HeapSort_time(b,n,time);
+    } else
+
+    if (algorithm == "merge-sort"); else 
+
     if (algorithm == "counting-sort") 
     {
         CountingSort_comp(a,n,comparison);
-    }
+        CountingSort_time(b,n,time);
+    } else 
+
     if (algorithm == "quick-sort") 
     {
         QuickSort_comp(a,n,comparison);
-    }
+        QuickSort_time(b,n,time);
+    } else 
+
     if (algorithm == "radix-sort") 
     {
         RadixSort_comp(a,n,comparison);
-    }
+        RadixSort_time(b,n,time);
+    } else 
+
     if (algorithm == "flash-sort") 
     {
         FlashSort_comp(a,n,comparison);
+        FlashSort_time(b,n,time);
+    } else 
+    {
+        cout << "Invalid Argument" << endl;
+        delete []b;
+        exit(0);
     }
+
+    delete []b;
 }
 
 ModeA inputAlgorithmMode(int argc, char **argv)
@@ -245,6 +275,7 @@ void processAlgorithmMode(int argc, char **argv)
         }
     }
     
+    delete []a;
 }
 
 ModeC inputCompareMode(int argc, char **argv)
@@ -313,6 +344,9 @@ void processCompareMode(int argc, char **argv)
 
     printResult(arg.algo1,arg.givenInput,getInputOrder(arg.inOrder),arg.inputSize,"-both",comp1,time1);
     printResult(arg.algo2,arg.givenInput,getInputOrder(arg.inOrder),arg.inputSize,"-both",comp2,time2);
+
+    delete []a1;
+    delete []a2;
 }
 
 void processArg(int argc, char **argv)

@@ -1,0 +1,9 @@
+void ShakerSort_time(int arr[], int n, double &time);
+void ShellSort_time(int a[], int n, double &time);
+void QuickSort_time(int a[], int n, double &time);
+void CountingSort_time(int *&a, int n, double &time);
+void RadixSort_time(int *&a, int n, double &time);
+void FlashSort_time(int arr[], int n, double &time);
+void HeapSort_time(int arr[], int sz, double &time);
+void BubbleSort_time(int arr[], int sz, double &time);
+void InsertionSort_time(int arr[], int sz, double &time);

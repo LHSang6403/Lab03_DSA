@@ -66,7 +66,7 @@ void ShellSort_comp(int a[], int n, unsigned long long &comparison)
         {
             x = a[i];
             j = i;
-            while (++comparison && ++comparison && x < a[j - t] && j >= t)
+            while (++comparison && x < a[j - t] && ++comparison  && j >= t)
             {
                 a[j] = a[j - t];
                 j = j - t;
