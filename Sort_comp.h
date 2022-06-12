@@ -7,3 +7,5 @@ void FlashSort_comp(int arr[], int n, unsigned long long &comparison);
 void HeapSort_comp(int arr[], int sz, unsigned long long &comparison);
 void BubbleSort_comp(int arr[], int sz, unsigned long long &comparison);
 void InsertionSort_comp(int arr[], int sz, unsigned long long &comparison);
+void SelectionSort_comp(int arr[], int n, unsigned long long& comparison);
+void MergeSort_comp(int arr[], int n, unsigned long long &comparison);

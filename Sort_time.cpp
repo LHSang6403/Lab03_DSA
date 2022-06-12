@@ -358,3 +358,67 @@ void InsertionSort_time(int arr[], int sz, double &time)
     end = clock();
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
+void SelectionSort_time(int arr[], int n, double &time){
+    clock_t start, end;
+    time = 0;
+
+    start = clock();
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min])
+                min = j;
+            if (min != i && j == n - 1) {
+                int temp = arr[min];
+                arr[min] = arr[i];
+                arr[i] = temp;
+            }
+        }
+    }
+    end = clock();
+
+    time = (double)(end - start) / CLOCKS_PER_SEC;
+}
+void MERGE(int arr[], int l, int m, int r){
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    int* Lrr = new int[n1];
+    int* Rrr = new int[n2];
+    for (i = 0; i < n1; i++){
+        Lrr[i] = arr[l + i];
+    }
+    for (j = 0; j < n2; j++){
+        Rrr[j] = arr[m + j + 1];
+    }
+    i = 0, j = 0, k = l;
+    while ((i < n1) && (j < n2)){
+        arr[k++] = ((Lrr[i] <= Rrr[j]) ? Lrr[i++] : Rrr[j++]);
+    }
+    while (i < n1){
+        arr[k++] = Lrr[i++];
+    }
+    while (j < n2){
+        arr[k++] = Rrr[j++];
+    }
+    delete[]Lrr;
+    delete[]Rrr;
+}
+void MERGESORT(int arr[], int l, int r){
+    if (l < r){
+        int m = l + (r - l) / 2;
+        MERGESORT(arr, l, m);
+        MERGESORT(arr, m + 1, r);
+        MERGE(arr, l, m, r);
+    }
+}
+void MergeSort_time(int arr[], int n, double &time){
+    clock_t start, end;
+    time = 0;
+
+    start = clock();
+    MERGESORT(arr, 0, n - 1);
+    end = clock();
+
+    time = (double)(end - start) / CLOCKS_PER_SEC;
+}

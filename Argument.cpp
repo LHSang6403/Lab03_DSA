@@ -94,8 +94,8 @@ void callSortFunction(string algorithm, int a[], int n, unsigned long long &comp
     
     if (algorithm == "selection-sort")
     {
-        // compare sorting here
-        // time sorting here
+        SelectionSort_comp(a,n,comparison);
+        SelectionSort_time(b,n,time);
     }  
 
     if (algorithm == "insertion-sort") 
@@ -130,8 +130,8 @@ void callSortFunction(string algorithm, int a[], int n, unsigned long long &comp
 
     if (algorithm == "merge-sort")
     {
-        // compare sorting here
-        // time sorting here
+        MergeSort_comp(a,n,comparison);
+        MergeSort_time(b,n,time);
     } 
 
     if (algorithm == "counting-sort") 

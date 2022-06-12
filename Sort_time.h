@@ -7,3 +7,5 @@ void FlashSort_time(int arr[], int n, double &time);
 void HeapSort_time(int arr[], int sz, double &time);
 void BubbleSort_time(int arr[], int sz, double &time);
 void InsertionSort_time(int arr[], int sz, double &time);
+void SelectionSort_time(int arr[], int n, double &time);
+void MergeSort_time(int arr[], int n, double &time);
