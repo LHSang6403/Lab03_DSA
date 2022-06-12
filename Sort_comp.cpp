@@ -314,6 +314,7 @@ void InsertionSort_comp(int arr[], int sz, unsigned long long &comparison)
         arr[j + 1] = key;
     }
 }
+
 void SelectionSort_comp(int arr[], int n, unsigned long long& comparison) {
     comparison = 0;
     for (int i = 0; ++comparison && i < n - 1; i++) {
@@ -327,6 +328,7 @@ void SelectionSort_comp(int arr[], int n, unsigned long long& comparison) {
         arr[i] = temp;
     }
 }
+
 void Merge(int arr[], int l, int m, int r, unsigned long long &comparison){
     int i, j, k;
     int n1 = m - l + 1;
@@ -340,7 +342,7 @@ void Merge(int arr[], int l, int m, int r, unsigned long long &comparison){
         Rrr[j] = arr[m + j + 1];
     }
     i = 0, j = 0, k = l;
-    while (++comparison && (i < n1) && (j < n2)){
+    while (++comparison && (i < n1) && ++comparison && (j < n2)){
         arr[k++] = ((Lrr[i] <= Rrr[j]) ? Lrr[i++] : Rrr[j++]);
     }
     while (++comparison && (i < n1)){
@@ -352,14 +354,16 @@ void Merge(int arr[], int l, int m, int r, unsigned long long &comparison){
     delete[]Lrr;
     delete[]Rrr;
 }
+
 void MergeSort(int arr[], int l, int r, unsigned long long &comparison){
-    if (l < r){
+    if (++comparison && l < r){
         int m = l + (r - l) / 2;
-        MergeSort(arr, l, m, ++comparison);
-        MergeSort(arr, m + 1, r, ++comparison);
-        Merge(arr, l, m, r, ++comparison);
+        MergeSort(arr, l, m, comparison);
+        MergeSort(arr, m + 1, r, comparison);
+        Merge(arr, l, m, r, comparison);
     }
 }
+
 void MergeSort_comp(int arr[], int n, unsigned long long &comparison){
     comparison = 0;
     MergeSort(arr, 0, n - 1, comparison);
