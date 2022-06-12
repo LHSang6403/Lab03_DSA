@@ -87,7 +87,7 @@ string displayCommainNum(unsigned long long num)
     return res;
 }
 
-void callSortFunction(string algorithm, int a[], int n, unsigned long long &comparison, double &time)
+void callSortFunction(string algorithm, int *&a, int n, unsigned long long &comparison, double &time)
 {
     int *b = new int [n];
     for (int i = 0; i < n; i++) b[i] = a[i];
@@ -354,7 +354,11 @@ void processCompareMode(int argc, char **argv)
 
 void processArg(int argc, char **argv)
 {
-    if (argc != 5 || argc !=6) cout << "Invalid Argument" << endl;
+    if (argc != 5 && argc !=6) 
+    {
+        cout << "Invalid Argument" << endl;
+        return;
+    }
 
     if (strcmp(argv[1],"-a") == 0) processAlgorithmMode(argc,argv); else 
     if (strcmp(argv[1],"-c") == 0) processCompareMode(argc,argv); else 
