@@ -251,9 +251,11 @@ void FlashSort_time(int arr[], int n, double &time)
         while (j != bucket[k])
         {
             k = floorf((c * (flash - minVal)) * 100) / 100;
-            --bucket[k];
-            swap(bucket[k], flash);
-            ++move;
+           	int t;
+			int hold = arr[t = --bucket[k]];
+			arr[t] = flash;
+			flash = hold;
+			++move;
         }
     }
     // Insertion sort
