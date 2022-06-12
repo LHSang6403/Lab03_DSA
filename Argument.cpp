@@ -96,72 +96,67 @@ void callSortFunction(string algorithm, int a[], int n, unsigned long long &comp
     {
         // compare sorting here
         // time sorting here
-    } else 
+    }  
 
     if (algorithm == "insertion-sort") 
     {   
         InsertionSort_comp(a,n,comparison);
         InsertionSort_time(b,n,time);
-    } else 
+    }  
 
     if (algorithm == "bubble-sort") 
     {
         BubbleSort_comp(a,n,comparison);
         BubbleSort_time(b,n,time);
-    } else 
+    }  
 
     if (algorithm == "shaker-sort") 
     {
         ShakerSort_comp(a,n,comparison);
         ShakerSort_time(b,n,time);
-    } else
+    } 
 
     if (algorithm == "shell-sort") 
     {
         ShellSort_comp(a,n,comparison);
         ShellSort_time(b,n,time);
-    } else 
+    }  
 
     if (algorithm == "heap-sort") 
     {
         HeapSort_comp(a,n,comparison);
         HeapSort_time(b,n,time);
-    } else
+    } 
 
     if (algorithm == "merge-sort")
     {
         // compare sorting here
         // time sorting here
-    }else 
+    } 
 
     if (algorithm == "counting-sort") 
     {
         CountingSort_comp(a,n,comparison);
         CountingSort_time(b,n,time);
-    } else 
+    }  
 
     if (algorithm == "quick-sort") 
     {
         QuickSort_comp(a,n,comparison);
         QuickSort_time(b,n,time);
-    } else 
+    }  
 
     if (algorithm == "radix-sort") 
     {
         RadixSort_comp(a,n,comparison);
         RadixSort_time(b,n,time);
-    } else 
+    }  
 
     if (algorithm == "flash-sort") 
     {
         FlashSort_comp(a,n,comparison);
         FlashSort_time(b,n,time);
-    } else 
-    {
-        cout << "Invalid Argument" << endl;
-        delete []b;
-        exit(0);
-    }
+    }  
 
     delete []b;
 }
