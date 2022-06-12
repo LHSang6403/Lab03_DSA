@@ -52,7 +52,7 @@ void ShellSort_comp(int a[], int n, unsigned long long &comparison)
 
     int *gap = new int[n],
         gap_num = 0;
-    
+
     createGap(n, gap, gap_num, comparison);
 
     int p = 0,
@@ -66,7 +66,7 @@ void ShellSort_comp(int a[], int n, unsigned long long &comparison)
         {
             x = a[i];
             j = i;
-            while (++comparison && x < a[j - t] && ++comparison  && j >= t)
+            while (++comparison && x < a[j - t] && ++comparison && j >= t)
             {
                 a[j] = a[j - t];
                 j = j - t;
@@ -129,7 +129,7 @@ void CountingSort_comp(int *&a, int n, unsigned long long &comparison)
     delete[] a;
     a = res;
     delete flag;
-    
+
     // Ref: https://www.geeksforgeeks.org/counting-sort/
 }
 
@@ -186,7 +186,7 @@ void FlashSort_comp(int arr[], int n, unsigned long long &comparison)
     findMaxMin(arr, n, comparison, max, minVal);
 
     // Create bucket to store value
-    int bucketNum = (int)(0.45 * n);
+    int bucketNum = floorf((0.125 * n) * 100) / 100;
     int *bucket = new int[bucketNum];
     // Initialize value of bucket with 0
     for (int i = 0; ++comparison, i < bucketNum; i++)
@@ -194,11 +194,11 @@ void FlashSort_comp(int arr[], int n, unsigned long long &comparison)
         bucket[i] = 0;
     }
 
-    const float c = (bucketNum - 1) / (arr[max] - minVal);
+    const float c = (bucketNum - 1.0) / (arr[max] - minVal);
     // Count the number value of each bucket
     for (int i = 0; ++comparison, i < n; i++)
     {
-        int temp = int(c * (arr[i] - minVal));
+        int temp = floorf((c * (arr[i] - minVal)) * 100) / 100;
         bucket[temp] += 1;
     }
     // Calc the lastest index of each bucket
@@ -216,7 +216,7 @@ void FlashSort_comp(int arr[], int n, unsigned long long &comparison)
         while (++comparison && j > (bucket[k] - 1))
         {
             ++j;
-            k = int(c * (arr[j] - minVal));
+            k = floorf((c * (arr[j] - minVal) * 100)) / 100;
         }
 
         if (++comparison && k < 0)
@@ -224,7 +224,7 @@ void FlashSort_comp(int arr[], int n, unsigned long long &comparison)
         flash = arr[j];
         while (++comparison && j != bucket[k])
         {
-            k = int(c * (flash - minVal));
+            k = floorf((c * (flash - minVal)) * 100) / 100;
             --bucket[k];
             swap(bucket[k], flash);
             ++move;

@@ -7,7 +7,7 @@ using namespace std;
 
 void ShakerSort_time(int arr[], int n, double &time)
 {
-    clock_t start,end;
+    clock_t start, end;
 
     start = clock();
 
@@ -38,7 +38,7 @@ void ShakerSort_time(int arr[], int n, double &time)
     }
 
     end = clock();
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void createGap(int n, int gap[], int &gap_num)
@@ -53,13 +53,13 @@ void createGap(int n, int gap[], int &gap_num)
 
 void ShellSort_time(int a[], int n, double &time)
 {
-    clock_t start,end;
+    clock_t start, end;
 
     start = clock();
-    
+
     int *gap = new int[n],
         gap_num = 0;
-    
+
     createGap(n, gap, gap_num);
 
     int p = 0,
@@ -84,7 +84,7 @@ void ShellSort_time(int a[], int n, double &time)
     delete[] gap;
 
     end = clock();
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void QUICKSORT(int a[], int l, int r)
@@ -120,7 +120,7 @@ void QuickSort_time(int a[], int n, double &time)
     QUICKSORT(a, 0, n - 1);
     end = clock();
 
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void CountingSort_time(int *&a, int n, double &time)
@@ -128,7 +128,7 @@ void CountingSort_time(int *&a, int n, double &time)
     clock_t start, end;
 
     start = clock();
-    
+
     // According to randomize code, the elements' range is from 1 to n-1
     int *flag = new int[n]{0};
     int *res = new int[n];
@@ -146,10 +146,10 @@ void CountingSort_time(int *&a, int n, double &time)
     delete[] a;
     a = res;
     delete flag;
-    
+
     end = clock();
 
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/counting-sort/
 }
 
@@ -184,7 +184,7 @@ void RadixSort_time(int *&a, int n, double &time)
 
     end = clock();
 
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
     // Ref: https://www.geeksforgeeks.org/radix-sort/
 }
 
@@ -212,7 +212,7 @@ void FlashSort_time(int arr[], int n, double &time)
     findMaxMin(arr, n, max, minVal);
 
     // Create bucket to store value
-    int bucketNum = (int)(0.45 * n);
+    int bucketNum = floorf((0.125 * n) * 100) / 100;
     int *bucket = new int[bucketNum];
     // Initialize value of bucket with 0
     for (int i = 0; i < bucketNum; i++)
@@ -220,11 +220,11 @@ void FlashSort_time(int arr[], int n, double &time)
         bucket[i] = 0;
     }
 
-    const float c = (bucketNum - 1) / (arr[max] - minVal);
+    const float c = (bucketNum - 1.0) / (arr[max] - minVal);
     // Count the number value of each bucket
     for (int i = 0; i < n; i++)
     {
-        int temp = int(c * (arr[i] - minVal));
+        int temp = floorf((c * (arr[i] - minVal)) * 100) / 100;
         bucket[temp] += 1;
     }
     // Calc the lastest index of each bucket
@@ -242,7 +242,7 @@ void FlashSort_time(int arr[], int n, double &time)
         while (j > (bucket[k] - 1))
         {
             ++j;
-            k = int(c * (arr[j] - minVal));
+            k = floorf((c * (arr[j] - minVal) * 100)) / 100;
         }
 
         if (k < 0)
@@ -250,7 +250,7 @@ void FlashSort_time(int arr[], int n, double &time)
         flash = arr[j];
         while (j != bucket[k])
         {
-            k = int(c * (flash - minVal));
+            k = floorf((c * (flash - minVal)) * 100) / 100;
             --bucket[k];
             swap(bucket[k], flash);
             ++move;
@@ -271,7 +271,7 @@ void FlashSort_time(int arr[], int n, double &time)
     delete[] bucket;
 
     end = clock();
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void buildHeap(int arr[], int n, int i)
@@ -310,16 +310,16 @@ void HeapSort_time(int arr[], int sz, double &time)
     }
 
     end = clock();
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void BubbleSort_time(int arr[], int sz, double &time)
 {
-    clock_t start,end;
+    clock_t start, end;
 
     start = clock();
 
-    for (int i = 0;  i < sz - 1; i++)
+    for (int i = 0; i < sz - 1; i++)
     {
         for (int j = sz - 1; j > i; j--)
         {
@@ -329,12 +329,12 @@ void BubbleSort_time(int arr[], int sz, double &time)
     }
 
     end = clock();
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
 void InsertionSort_time(int arr[], int sz, double &time)
 {
-    clock_t start,end;
+    clock_t start, end;
 
     start = clock();
 
@@ -355,5 +355,5 @@ void InsertionSort_time(int arr[], int sz, double &time)
     }
 
     end = clock();
-    time = (double) (end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC;
 }
