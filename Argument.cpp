@@ -92,7 +92,11 @@ void callSortFunction(string algorithm, int a[], int n, unsigned long long &comp
     int *b = new int [n];
     for (int i = 0; i < n; i++) b[i] = a[i];
     
-    if (algorithm == "selection-sort"); else 
+    if (algorithm == "selection-sort")
+    {
+        // compare sorting here
+        // time sorting here
+    } else 
 
     if (algorithm == "insertion-sort") 
     {   
@@ -124,7 +128,11 @@ void callSortFunction(string algorithm, int a[], int n, unsigned long long &comp
         HeapSort_time(b,n,time);
     } else
 
-    if (algorithm == "merge-sort"); else 
+    if (algorithm == "merge-sort")
+    {
+        // compare sorting here
+        // time sorting here
+    }else 
 
     if (algorithm == "counting-sort") 
     {
