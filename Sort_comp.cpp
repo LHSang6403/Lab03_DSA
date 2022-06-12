@@ -139,7 +139,7 @@ void RadixSort_comp(int *&a, int n, unsigned long long &comparison)
 
     int *res = new int[n]{0};
 
-    for (int i = 1; ++comparison, i <= pow(10, (int)log10(n) + 1); i *= 10)
+    for (int i = 1; ++comparison, n / i > 0; i *= 10)
     {
         int flag[10] = {0};
 

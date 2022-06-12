@@ -161,7 +161,7 @@ void RadixSort_time(int *&a, int n, double &time)
 
     int *res = new int[n]{0};
 
-    for (int i = 1; i <= pow(10, (int)log10(n) + 1); i *= 10)
+    for (int i = 1; n / i > 0; i *= 10)
     {
         int flag[10] = {0};
 
