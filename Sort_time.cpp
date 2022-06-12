@@ -174,11 +174,10 @@ void RadixSort_time(int *&a, int n, double &time)
             res[flag[(a[j] / i) % 10] - 1] = a[j];
             flag[(a[j] / i) % 10]--;
         }
-        for (int j = 0; j < n; j++)
-        {
-            a[j] = res[j];
-            res[j] = 0;
-        }
+        int *temp = a;
+        a = res;
+        res = temp;
+        fill(res,res + n,0);
     }
     delete[] res;
 
