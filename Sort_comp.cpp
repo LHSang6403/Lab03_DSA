@@ -186,13 +186,8 @@ void FlashSort_comp(int arr[], int n, unsigned long long &comparison)
 
     // Create bucket to store value
     int bucketNum = floorf((0.125 * n) * 100) / 100;
-    int *bucket = new int[bucketNum];
-    // Initialize value of bucket with 0
-    for (int i = 0; ++comparison, i < bucketNum; i++)
-    {
-        bucket[i] = 0;
-    }
-
+    int *bucket = new int[bucketNum]{0};
+  
     const float c = (bucketNum - 1.0) / (arr[max] - minVal);
     // Count the number value of each bucket
     for (int i = 0; ++comparison, i < n; i++)
