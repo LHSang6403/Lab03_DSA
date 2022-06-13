@@ -128,7 +128,7 @@ void CountingSort_comp(int *&a, int n, unsigned long long &comparison)
 
     delete[] a;
     a = res;
-    delete flag;
+    delete[] flag;
 
     // Ref: https://www.geeksforgeeks.org/counting-sort/
 }
