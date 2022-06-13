@@ -145,7 +145,7 @@ void CountingSort_time(int *&a, int n, double &time)
 
     delete[] a;
     a = res;
-    delete flag;
+    delete[] flag;
 
     end = clock();
 
