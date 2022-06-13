@@ -338,6 +338,7 @@ void Merge(int arr[], int l, int m, int r, unsigned long long &comparison){
     }
     i = 0, j = 0, k = l;
     while (++comparison && (i < n1) && ++comparison && (j < n2)){
+        ++comparison;
         arr[k++] = ((Lrr[i] <= Rrr[j]) ? Lrr[i++] : Rrr[j++]);
     }
     while (++comparison && (i < n1)){
