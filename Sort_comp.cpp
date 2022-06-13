@@ -239,6 +239,7 @@ void FlashSort_comp(int arr[], int n, unsigned long long &comparison)
         arr[idx_temp + 1] = hold;
     }
     delete[] bucket;
+    // Flash Sort - Thuật Toán Sắp Xếp Thần Thánh (codelearn.io)
 }
 
 void buildHeap(int arr[], int n, int i, unsigned long long &comparison)
